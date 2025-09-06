@@ -1,2 +1,1 @@
-heloooooo 
-this is my first backend project :)
+My first backend project :)
