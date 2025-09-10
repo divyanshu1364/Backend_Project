@@ -1,11 +1,10 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import {ApiError} from "../utils/ApiError.js"
-import { User} from "../models/user.model.js"
+import {User} from "../models/user.model.js"
 import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose";
-
 
 const generateAccessAndRefereshTokens = async(userId) =>{
     try {
@@ -23,7 +22,6 @@ const generateAccessAndRefereshTokens = async(userId) =>{
         throw new ApiError(500, "Something went wrong while generating referesh and access token")
     }
 }
-
 //............................................//
 
 const registerUser = asyncHandler( async (req, res) => {
@@ -113,15 +111,15 @@ const loginUser = asyncHandler(async (req, res) =>{
     const {email, username, password} = req.body
     console.log(email);
 
-    //if (!username && !email) {
-    //    throw new ApiError(400, "username or email is required")
-    //}
+    if (!username && !email) {
+        throw new ApiError(400, "username or email is required")
+    }
     
     // Here is an alternative of above code based on logic discussed in video:
-    if (!(username || email)) {
-        throw new ApiError(400, "username or email is required")
+    //if (!(username || email)) {
+    //    throw new ApiError(400, "username or email is required")
         
-    }
+    //}
 
     const user = await User.findOne({
         $or: [{username}, {email}]
