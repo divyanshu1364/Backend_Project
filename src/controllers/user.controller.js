@@ -6,6 +6,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose";
 
+// ...........................................//
 const generateAccessAndRefereshTokens = async(userId) =>{
     try {
         const user = await User.findById(userId)
@@ -23,7 +24,6 @@ const generateAccessAndRefereshTokens = async(userId) =>{
     }
 }
 //............................................//
-
 const registerUser = asyncHandler( async (req, res) => {
     // STEPS:
     // get user details from frontend
@@ -98,8 +98,7 @@ const registerUser = asyncHandler( async (req, res) => {
     )
 
 } )
-// ...............................................//
-
+// ...........................................//
 const loginUser = asyncHandler(async (req, res) =>{
     // req body -> data
     // username or email
@@ -159,7 +158,7 @@ const loginUser = asyncHandler(async (req, res) =>{
     )
 
 })
-
+// ...........................................//
 const logoutUser = asyncHandler(async(req, res) => {
     await User.findByIdAndUpdate(
         req.user._id,
@@ -184,7 +183,7 @@ const logoutUser = asyncHandler(async(req, res) => {
     .clearCookie("refreshToken", options)
     .json(new ApiResponse(200, {}, "User logged Out"))
 })
-
+// ...........................................//
 const refreshAccessToken = asyncHandler(async (req, res) => {
     const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken
 
