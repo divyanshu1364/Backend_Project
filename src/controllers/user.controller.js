@@ -5,7 +5,6 @@ import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose";
-
 // ...........................................//
 const generateAccessAndRefereshTokens = async(userId) =>{
     try {
@@ -97,7 +96,7 @@ const registerUser = asyncHandler( async (req, res) => {
         new ApiResponse(200, createdUser, "User registered Successfully")
     )
 
-} )
+})
 // ...........................................//
 const loginUser = asyncHandler(async (req, res) =>{
     // req body -> data
@@ -231,7 +230,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 
 })
-/*
+// ...........................................//
 const changeCurrentPassword = asyncHandler(async(req, res) => {
     const {oldPassword, newPassword} = req.body
 
@@ -251,8 +250,7 @@ const changeCurrentPassword = asyncHandler(async(req, res) => {
     .status(200)
     .json(new ApiResponse(200, {}, "Password changed successfully"))
 })
-
-
+// ...........................................//
 const getCurrentUser = asyncHandler(async(req, res) => {
     return res
     .status(200)
@@ -262,7 +260,7 @@ const getCurrentUser = asyncHandler(async(req, res) => {
         "User fetched successfully"
     ))
 })
-
+// ...........................................//
 const updateAccountDetails = asyncHandler(async(req, res) => {
     const {fullName, email} = req.body
 
@@ -286,7 +284,7 @@ const updateAccountDetails = asyncHandler(async(req, res) => {
     .status(200)
     .json(new ApiResponse(200, user, "Account details updated successfully"))
 });
-
+// ...........................................//
 const updateUserAvatar = asyncHandler(async(req, res) => {
     const avatarLocalPath = req.file?.path
 
@@ -319,7 +317,7 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
         new ApiResponse(200, user, "Avatar image updated successfully")
     )
 })
-
+// ...........................................//
 const updateUserCoverImage = asyncHandler(async(req, res) => {
     const coverImageLocalPath = req.file?.path
 
@@ -353,8 +351,7 @@ const updateUserCoverImage = asyncHandler(async(req, res) => {
         new ApiResponse(200, user, "Cover image updated successfully")
     )
 })
-
-
+// ...........................................//
 const getUserChannelProfile = asyncHandler(async(req, res) => {
     const {username} = req.params
 
@@ -426,7 +423,7 @@ const getUserChannelProfile = asyncHandler(async(req, res) => {
         new ApiResponse(200, channel[0], "User channel fetched successfully")
     )
 })
-
+// ...........................................//
 const getWatchHistory = asyncHandler(async(req, res) => {
     const user = await User.aggregate([
         {
@@ -480,18 +477,17 @@ const getWatchHistory = asyncHandler(async(req, res) => {
         )
     )
 })
-*/
-
+// ...........................................//
 export {
     registerUser,
     loginUser,
     logoutUser,
-    refreshAccessToken, /*
+    refreshAccessToken, 
     changeCurrentPassword,
     getCurrentUser,
     updateAccountDetails,
     updateUserAvatar,
     updateUserCoverImage,
     getUserChannelProfile,
-    getWatchHistory */
+    getWatchHistory
 }
